@@ -1,8 +1,8 @@
 # RedfinAsDataframe
 
-Up to date remote economic data access for ruby, using Polars dataframes. 
+Up to date housing market data access for Ruby, using Polars dataframes. 
 
-This package will fetch economic and financial information from Redfin's API, and return the results as a Polars dataframe.  For details regarding the data available from Redfin, see https://www.redfin.com/news/data-center/ .
+This gem fetches housing market information from Redfin's public data API and returns the results as a Polars dataframe. For details regarding the data available from Redfin, see https://www.redfin.com/news/data-center/ .
 
 
 ## Installation
@@ -23,37 +23,82 @@ Or install it yourself as:
 
 ## Usage
 
-```{ruby}
-3.1.2 :001 > RedfinAsDataframe::National.new.fetch
- => 
-shape: (900, 48)                                                                                      
-┌────────────┬──────────────┬────────────┬───────────────────────────┬───┬─────────────────────────┬─────────────────────────────┬─────────────────────────────┬─────────────────────┐
-│ Timestamps ┆ period_begin ┆ period_end ┆ property_type             ┆ … ┆ off_market_in_two_weeks ┆ off_market_in_two_weeks_mom ┆ off_market_in_two_weeks_yoy ┆ last_updated        │
-│ ---        ┆ ---          ┆ ---        ┆ ---                       ┆   ┆ ---                     ┆ ---                         ┆ ---                         ┆ ---                 │
-│ date       ┆ date         ┆ date       ┆ str                       ┆   ┆ f64                     ┆ f64                         ┆ f64                         ┆ str                 │
-╞════════════╪══════════════╪════════════╪═══════════════════════════╪═══╪═════════════════════════╪═════════════════════════════╪═════════════════════════════╪═════════════════════╡
-│ 2012-01-01 ┆ 2012-01-01   ┆ 2012-01-31 ┆ All Residential           ┆ … ┆ 0.268978                ┆ 0.05758                     ┆ 0.042427                    ┆ 2024-07-15 17:34:50 │
-│ 2012-01-01 ┆ 2012-01-01   ┆ 2012-01-31 ┆ Single Family Residential ┆ … ┆ 0.264943                ┆ 0.057888                    ┆ 0.042966                    ┆ 2024-07-15 17:34:50 │
-│ 2012-01-01 ┆ 2012-01-01   ┆ 2012-01-31 ┆ Condo/Co-op               ┆ … ┆ 0.261377                ┆ 0.056769                    ┆ 0.047681                    ┆ 2024-07-15 17:34:50 │
-│ 2012-01-01 ┆ 2012-01-01   ┆ 2012-01-31 ┆ Multi-Family (2-4 Unit)   ┆ … ┆ 0.284983                ┆ 0.046932                    ┆ 0.034672                    ┆ 2024-07-15 17:34:50 │
-│ 2012-01-01 ┆ 2012-01-01   ┆ 2012-01-31 ┆ Single Units Only         ┆ … ┆ 0.268479                ┆ 0.05802                     ┆ 0.042755                    ┆ 2024-07-15 17:34:50 │
-│ …          ┆ …            ┆ …          ┆ …                         ┆ … ┆ …                       ┆ …                           ┆ …                           ┆ …                   │
-│ 2024-06-01 ┆ 2024-06-01   ┆ 2024-06-30 ┆ Single Units Only         ┆ … ┆ 0.391207                ┆ -0.015626                   ┆ -0.038292                   ┆ 2024-07-15 17:34:50 │
-│ 2024-06-01 ┆ 2024-06-01   ┆ 2024-06-30 ┆ Multi-Family (2-4 Unit)   ┆ … ┆ 0.379549                ┆ -0.004404                   ┆ -0.023177                   ┆ 2024-07-15 17:34:50 │
-│ 2024-06-01 ┆ 2024-06-01   ┆ 2024-06-30 ┆ All Residential           ┆ … ┆ 0.39092                 ┆ -0.015381                   ┆ -0.038202                   ┆ 2024-07-15 17:34:50 │
-│ 2024-06-01 ┆ 2024-06-01   ┆ 2024-06-30 ┆ Condo/Co-op               ┆ … ┆ 0.311552                ┆ -0.007067                   ┆ -0.05425                    ┆ 2024-07-15 17:34:50 │
-│ 2024-06-01 ┆ 2024-06-01   ┆ 2024-06-30 ┆ Single Family Residential ┆ … ┆ 0.401831                ┆ -0.015627                   ┆ -0.035427                   ┆ 2024-07-15 17:34:50 │
-└────────────┴──────────────┴────────────┴───────────────────────────┴───┴─────────────────────────┴─────────────────────────────┴─────────────────────────────┴─────────────────────┘ 
-```
-## Development
+### Basic Usage
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake none` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Fetch all available national housing market data:
+
+```ruby
+require 'redfin_as_dataframe'
+
+national = RedfinAsDataframe::National.new
+df = national.fetch
+```
+
+This returns a Polars DataFrame with housing market metrics including median sale prices, inventory, months of supply, and more.
+
+### Filtering by Date Range
+
+You can filter data by specifying start and/or end dates:
+
+```ruby
+# Fetch data from a specific start date
+national = RedfinAsDataframe::National.new
+df = national.fetch(start: '2020-01-01')
+
+# Fetch data up to a specific end date
+df = national.fetch(fin: '2023-12-31')
+
+# Fetch data within a date range
+df = national.fetch(start: '2020-01-01', fin: '2023-12-31')
+```
+
+The `start` parameter filters to include only data where `period_begin` is on or after the specified date.
+The `fin` parameter filters to include only data where `period_end` is on or before the specified date.
+
+### Selecting Specific Data Series
+
+You can fetch a specific data series by passing the column name to the initializer:
+
+```ruby
+# Fetch only median sale price data
+national = RedfinAsDataframe::National.new('median_sale_price')
+df = national.fetch
+
+# The returned DataFrame will contain only 'Timestamps' and 'median_sale_price' columns
+```
+
+Available series include:
+- `median_sale_price`, `median_list_price`
+- `median_ppsf` (price per square foot), `median_list_ppsf`
+- `homes_sold`, `pending_sales`, `new_listings`, `inventory`
+- `months_of_supply`, `median_dom` (days on market)
+- `avg_sale_to_list`, `sold_above_list`, `price_drops`
+- And many more (see the full TSV data for all available columns)
+
+## Testing
+
+After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+
+The test suite uses RSpec and includes:
+- Unit tests for the `National` class
+- Mocked HTTP requests (no live API calls during testing)
+- Tests for date filtering and data series selection
+
+To run the tests:
+
+    $ bundle exec rake spec
+
+Or run tests directly with RSpec:
+
+    $ bundle exec rspec
+
+## Development
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/redfin_as_dataframe.
+Bug reports and pull requests are welcome on GitHub at https://github.com/bmck/redfin_as_dataframe.
 
 
 ## License
