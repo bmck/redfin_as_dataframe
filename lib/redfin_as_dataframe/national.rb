@@ -3,10 +3,11 @@ require 'httparty'
 require 'zlib'
 require 'stringio'
 require 'csv'
+require 'date'
 
 module RedfinAsDataframe
   class National
-    # Get data for the given name from the Bank of Canada.
+    # Get data for Redfin national housing market metrics.
 
     include ::HTTParty
 
@@ -25,8 +26,8 @@ module RedfinAsDataframe
       df = {}; (0..(keys.length-1)).to_a.each{|i| df[keys[i]] = vals[i]}
 
       df = Polars::DataFrame.new(df).drop(['period_duration', 'region_type', 'region_type_id','table_id','is_seasonally_adjusted','region','city','state','state_code', 'parent_metro_region', 'parent_metro_region_metro_code'])
-      df = df.filter(Polars.col('period_end') <= fin.to_date) unless start.nil?
-      df = df.filter(Polars.col('period_begin') >= start.to_date) unless fin.nil?
+      df = df.filter(Polars.col('period_begin') >= (start.is_a?(Date) ? start : Date.parse(start.to_s))) unless start.nil?
+      df = df.filter(Polars.col('period_end') <= (fin.is_a?(Date) ? fin : Date.parse(fin.to_s))) unless fin.nil?
       s = Polars::Series.new('Timestamps', df['period_begin'].to_a)
       df = df.insert_column(0,s)
 
@@ -41,7 +42,7 @@ module RedfinAsDataframe
       if @ary.nil?
         tsv_gz = self.class.get('https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/us_national_market_tracker.tsv000.gz').parsed_response
         tsv = Zlib::GzipReader.new(StringIO.new(tsv_gz)).read    
-        @ary = CSV.parse(tsv, headers: true, col_sep: "\t", converters: :numeric).select{|a| a['is_seasonally_adjusted'] == 'f'}.each{|r| r['period_begin'] = r['period_begin'].to_date; r['period_end'] = r['period_end'].to_date }
+        @ary = CSV.parse(tsv, headers: true, col_sep: "\t", converters: :numeric).select{|a| a['is_seasonally_adjusted'] == 'f'}.each{|r| r['period_begin'] = Date.parse(r['period_begin']); r['period_end'] = Date.parse(r['period_end']) }
       end
       @ary
     end

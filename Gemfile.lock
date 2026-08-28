@@ -1,0 +1,72 @@
+PATH
+  remote: .
+  specs:
+    redfin_as_dataframe (0.1.0)
+      httparty
+      polars-df (= 0.27.1)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    addressable (2.9.0)
+      public_suffix (>= 2.0.2, < 8.0)
+    bigdecimal (4.1.2)
+    crack (1.0.1)
+      bigdecimal
+      rexml
+    csv (3.3.6)
+    diff-lcs (1.6.2)
+    hashdiff (1.2.1)
+    httparty (0.24.2)
+      csv
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
+    mini_mime (1.1.5)
+    multi_xml (0.9.1)
+      bigdecimal (>= 3.1, < 5)
+    polars-df (0.27.1-aarch64-linux)
+    polars-df (0.27.1-aarch64-linux-musl)
+    polars-df (0.27.1-arm64-darwin)
+    polars-df (0.27.1-x86_64-darwin)
+    polars-df (0.27.1-x86_64-linux)
+    polars-df (0.27.1-x86_64-linux-musl)
+    public_suffix (7.0.5)
+    rake (12.3.3)
+    rexml (3.4.4)
+    rspec (3.13.2)
+      rspec-core (~> 3.13.0)
+      rspec-expectations (~> 3.13.0)
+      rspec-mocks (~> 3.13.0)
+    rspec-core (3.13.6)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.5)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.8)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-support (3.13.7)
+    webmock (3.26.3)
+      addressable (>= 2.8.0)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
+
+PLATFORMS
+  aarch64-linux
+  aarch64-linux-musl
+  arm64-darwin
+  x86_64-darwin
+  x86_64-linux
+  x86_64-linux-musl
+
+DEPENDENCIES
+  rake (~> 12.0)
+  redfin_as_dataframe!
+  rspec (~> 3.0)
+  webmock (~> 3.0)
+
+RUBY VERSION
+   ruby 3.3.6p108
+
+BUNDLED WITH
+   2.5.22
