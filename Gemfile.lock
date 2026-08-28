@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    redfin_as_dataframe (0.1.0)
+    redfin_as_dataframe (0.2.0)
       httparty
       polars-df (= 0.27.1)
 

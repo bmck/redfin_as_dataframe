@@ -4,6 +4,10 @@ Up to date housing market data access for Ruby, using Polars dataframes.
 
 This gem fetches housing market information from Redfin's public data API and returns the results as a Polars dataframe. For details regarding the data available from Redfin, see https://www.redfin.com/news/data-center/ .
 
+## Requirements
+
+- Ruby >= 3.3
+- polars-df 0.27.1
 
 ## Installation
 
