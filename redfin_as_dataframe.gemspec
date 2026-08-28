@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.description   = 'Homeownership and purchase metrics published by Redfin'
   spec.homepage      = "https://github.com/bmck/redfin_as_dataframe"
   spec.license       = "MIT"
-  spec.required_ruby_version = Gem::Requirement.new(">= 3.3.0")
+  spec.required_ruby_version = Gem::Requirement.new(">= 3.3")
 
   # spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
