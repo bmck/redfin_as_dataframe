@@ -3,16 +3,11 @@ PATH
   specs:
     redfin_as_dataframe (0.1.0)
       httparty
-<<<<<<< HEAD
-      polars-df
-=======
-      polars-df (~> 0.27.1)
->>>>>>> c777412 (Upgrade Ruby to 3.3.0+ and polars-df to 0.27.1)
+      polars-df (= 0.27.1)
 
 GEM
   remote: https://rubygems.org/
   specs:
-<<<<<<< HEAD
     addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
     bigdecimal (4.1.2)
@@ -22,10 +17,6 @@ GEM
     csv (3.3.6)
     diff-lcs (1.6.2)
     hashdiff (1.2.1)
-=======
-    bigdecimal (4.1.2)
-    csv (3.3.6)
->>>>>>> c777412 (Upgrade Ruby to 3.3.0+ and polars-df to 0.27.1)
     httparty (0.24.2)
       csv
       mini_mime (>= 1.0.0)
@@ -33,19 +24,12 @@ GEM
     mini_mime (1.1.5)
     multi_xml (0.9.1)
       bigdecimal (>= 3.1, < 5)
-<<<<<<< HEAD
-    polars-df (0.23.0-aarch64-linux)
-      bigdecimal
-    polars-df (0.23.0-aarch64-linux-musl)
-      bigdecimal
-    polars-df (0.23.0-arm64-darwin)
-      bigdecimal
-    polars-df (0.23.0-x86_64-darwin)
-      bigdecimal
-    polars-df (0.23.0-x86_64-linux)
-      bigdecimal
-    polars-df (0.23.0-x86_64-linux-musl)
-      bigdecimal
+    polars-df (0.27.1-aarch64-linux)
+    polars-df (0.27.1-aarch64-linux-musl)
+    polars-df (0.27.1-arm64-darwin)
+    polars-df (0.27.1-x86_64-darwin)
+    polars-df (0.27.1-x86_64-linux)
+    polars-df (0.27.1-x86_64-linux-musl)
     public_suffix (7.0.5)
     rake (12.3.3)
     rexml (3.4.4)
@@ -66,15 +50,6 @@ GEM
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-=======
-    polars-df (0.27.1-aarch64-linux)
-    polars-df (0.27.1-aarch64-linux-musl)
-    polars-df (0.27.1-arm64-darwin)
-    polars-df (0.27.1-x86_64-darwin)
-    polars-df (0.27.1-x86_64-linux)
-    polars-df (0.27.1-x86_64-linux-musl)
-    rake (12.3.3)
->>>>>>> c777412 (Upgrade Ruby to 3.3.0+ and polars-df to 0.27.1)
 
 PLATFORMS
   aarch64-linux
@@ -87,42 +62,8 @@ PLATFORMS
 DEPENDENCIES
   rake (~> 12.0)
   redfin_as_dataframe!
-<<<<<<< HEAD
   rspec (~> 3.0)
   webmock (~> 3.0)
 
-CHECKSUMS
-  addressable (2.9.0) sha256=7fdf6ac3660f7f4e867a0838be3f6cf722ace541dd97767fa42bc6cfa980c7af
-  bigdecimal (4.1.2) sha256=53d217666027eab4280346fba98e7d5b66baaae1b9c3c1c0ffe89d48188a3fbd
-  bundler (4.0.19) sha256=b48056e4c77fb3853cc47775b5447ede44aaa4f53c32f168014ab4fe86587d47
-  crack (1.0.1) sha256=ff4a10390cd31d66440b7524eb1841874db86201d5b70032028553130b6d4c7e
-  csv (3.3.6) sha256=aba61e7e507a66f03d45cb1f3c4b6359861c3504038b422962875dce099e4456
-  diff-lcs (1.6.2) sha256=9ae0d2cba7d4df3075fe8cd8602a8604993efc0dfa934cff568969efb1909962
-  hashdiff (1.2.1) sha256=9c079dbc513dfc8833ab59c0c2d8f230fa28499cc5efb4b8dd276cf931457cd1
-  httparty (0.24.2) sha256=8fca6a54aa0c4aa4303a0fd33e5e2156175d6a5334f714263b458abd7fda9c38
-  mini_mime (1.1.5) sha256=8681b7e2e4215f2a159f9400b5816d85e9d8c6c6b491e96a12797e798f8bccef
-  multi_xml (0.9.1) sha256=7ce766b59c17241ed62976caeae1fae9b2431b263398c35396239a68c4a64e57
-  polars-df (0.23.0-aarch64-linux) sha256=a62686067674220064c598770f7714558d3b1ef84e1affdc0b0073fe1f91d2f5
-  polars-df (0.23.0-aarch64-linux-musl) sha256=943c2c0690296f1bc1423b40acc8efcba755b15b4f591e1d48c3803c27a8a29e
-  polars-df (0.23.0-arm64-darwin) sha256=d7f6be557eaa95842f956035ca0dc45ddb6cbcf26baf4348159b3c2fde3b233e
-  polars-df (0.23.0-x86_64-darwin) sha256=5b19807c8e0f063591fa44920dfcede188ad3d09e1005e20c0f646266738d804
-  polars-df (0.23.0-x86_64-linux) sha256=2da173854e046efc616f3c49154f9d2c0e0445a16481cd1e62c303f6749a6d88
-  polars-df (0.23.0-x86_64-linux-musl) sha256=69c9697ba623e4e292fafc1b8a0b2d38f5db88d245c138c6058d7fc5bf4877e4
-  public_suffix (7.0.5) sha256=1a8bb08f1bbea19228d3bed6e5ed908d1cb4f7c2726d18bd9cadf60bc676f623
-  rake (12.3.3) sha256=f7694adb4fe638da35452300cee6c545e9c377a0e3190018ac04d590b3c26ab3
-  redfin_as_dataframe (0.1.0)
-  rexml (3.4.4) sha256=19e0a2c3425dfbf2d4fc1189747bdb2f849b6c5e74180401b15734bc97b5d142
-  rspec (3.13.2) sha256=206284a08ad798e61f86d7ca3e376718d52c0bc944626b2349266f239f820587
-  rspec-core (3.13.6) sha256=a8823c6411667b60a8bca135364351dda34cd55e44ff94c4be4633b37d828b2d
-  rspec-expectations (3.13.5) sha256=33a4d3a1d95060aea4c94e9f237030a8f9eae5615e9bd85718fe3a09e4b58836
-  rspec-mocks (3.13.8) sha256=086ad3d3d17533f4237643de0b5c42f04b66348c28bf6b9c2d3f4a3b01af1d47
-  rspec-support (3.13.7) sha256=0640e5570872aafefd79867901deeeeb40b0c9875a36b983d85f54fb7381c47c
-  webmock (3.26.3) sha256=77c612816bdcb2fc43db0e42fd98b19be7d4770fd708816fdde65a006664ddec
-
-BUNDLED WITH
-  4.0.19
-=======
-
 BUNDLED WITH
    2.5.22
->>>>>>> c777412 (Upgrade Ruby to 3.3.0+ and polars-df to 0.27.1)
